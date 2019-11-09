@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <!--The content below is only a placeholder and can be replaced.-->
   <div style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
+    <h1 style="font-family: sans-serif;">
+      INTERVIEW ASSIST
     </h1>
   </div>
   <div class="row">
@@ -48,11 +48,13 @@
             <th>Topic</th>
             <th>Question</th>
             <th>Rating</th>
+            <th>Level</th>
           </tr>
           <tr *ngFor="let val of results">
             <td>{{val.Question}}</td>
             <td>{{val.Topic}}</td>
-            <td>{{val.Rating}}</td>
+            <td><input type="text" [(ngModel)]="val.Rating"></td>
+            <td>{{val.Level}}</td>
           </tr>
         </table>
         <button class="btn btn-secondary" (click)="complete()">Complete</button>

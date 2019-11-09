@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
   currentQuestion = {};
   results = [];
   suggetionQ = [];
-  total = 0;
-  totalPercantage= 0;
+  total: number;
+  totalPercantage = 0;
   constructor(private httpclient: HttpClient) {
 
   }
@@ -41,12 +41,12 @@ export class AppComponent implements OnInit {
     if (lang === "WEBAPI") {
       this.flagMvc = true;
       this.currentQuestion = this.mvcQue.filter(x => x.LEVEL == this.textbox && x.ASKED === 0)[0];
-      
+
     }
     if (lang === "ANGULAR") {
       this.flagAngular = true;
       this.currentQuestion = this.AngularQue.filter(x => x.LEVEL == this.textbox && x.ASKED === 0)[0];
-      
+
     }
   }
 
@@ -54,18 +54,22 @@ export class AppComponent implements OnInit {
     this.currentQuestion['ASKED'] = 1;
     this.textbox = level;
     this.language(this.currentQuestion['TOPIC']);
-    var obj = {Question:'', Topic:'', Rating:0, SUGGESTION:'' };
-    obj.Question =this.currentQuestion['QUESTION'];
-    obj.Topic =this.currentQuestion['TOPIC'];
-    obj.Rating =level;
-    
+    var obj = { Question: '', Topic: '', Rating: 0, SUGGESTION: '', Level: 0 };
+    obj.Question = this.currentQuestion['QUESTION'];
+    obj.Topic = this.currentQuestion['TOPIC'];
+    obj.Level = this.currentQuestion['LEVEL'];
+    obj.Rating = 0;
+
     this.results.push(obj);
     console.log(this.results);
   }
-  complete(){
-    this.results.forEach(element => {
-      this.total = this.total + element.Rating
-       this.totalPercantage = this.total/(this.results.length*5);
-     });
+  complete() {
+    this.total = 0;
+    this.results.forEach((element, index) => {
+      this.total = this.total + parseInt(element.Rating);
+      if (index === (this.results.length - 1)) {
+        this.totalPercantage = this.total / (this.results.length * 5);
+      }
+    });
   }
 }
