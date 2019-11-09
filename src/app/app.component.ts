@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   suggetionQ = [];
   total: number;
   totalPercantage = 0;
+  show: boolean = false;
   constructor(private httpclient: HttpClient) {
 
   }
@@ -69,7 +70,13 @@ export class AppComponent implements OnInit {
       this.total = this.total + parseInt(element.Rating);
       if (index === (this.results.length - 1)) {
         this.totalPercantage = this.total / (this.results.length * 5);
+        this.show = true;
       }
     });
+  }
+  closeModal(){
+    if(this.show){
+      this.show =!this.show;
+    }
   }
 }

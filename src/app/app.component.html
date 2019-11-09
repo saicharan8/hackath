@@ -19,9 +19,7 @@
     </div>
     <div class="col-4">
       <div *ngIf="flagCsharp || flagAngular || flagMvc">
-        <h2 *ngIf="flagCsharp"> C#</h2>
-        <h2 *ngIf="flagAngular"> Angular</h2>
-        <h2 *ngIf="flagMvc"> API</h2>
+        <h2>{{currentQuestion.TOPIC}}</h2>
         <h5> <small>Topic</small> {{currentQuestion.QUESTION}} - LEVEL {{currentQuestion.LEVEL}}</h5>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div class="btn-group mr-2" role="group" aria-label="First group">
@@ -61,6 +59,23 @@
         Total Score: {{ totalPercantage | percent:'2.0-2'}}
       </div>
     </div>
+  </div>
+</div>
+
+<div class="popup" *ngIf="show">
+  <div class="popup-container">
+    <h2>Report <button type="button" (click)="closeModal()" class=" close btn btn-link" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button></h2>
+    <p style="margin-top: 30px; margin-bottom: 20px;">Total Percantage : {{totalPercantage| percent:'2.0-2'}}</p>
+    <ul>
+      <li>Status: <span *ngIf='totalPercantage >0.5'>Selected</span> <span *ngIf='totalPercantage<=0.5'>Rejected</span>
+      </li>
+      <li>Designation <span *ngIf='totalPercantage >0.6 && totalPercantage <0.7'>Associate consultant</span> <span
+          *ngIf='totalPercantage >0.7 && totalPercantage <0.8'>consultant</span> <span
+          *ngIf='totalPercantage >=0.8'>Senior consultant</span> </li>
+      <li>Comments: NA</li>
+    </ul>
   </div>
 </div>
 
