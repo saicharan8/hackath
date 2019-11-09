@@ -1,0 +1,10 @@
+:host{
+    .content-number{
+        position: relative;
+        &:after{
+            content: 'Out of 5';
+            position: absolute;
+            color: #000000;
+        }
+    }
+}

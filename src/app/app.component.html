@@ -1,21 +1,65 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container-fluid">
+  <!--The content below is only a placeholder and can be replaced.-->
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <p>Please Select Level and Topic </p>
+      <input type="text" class="form-control content-number" [(ngModel)]="textbox" />
+      <button (click)="language('C#')" class="btn btn-link"> <img src="../assets/images/Csharp.png" alt=""
+          height="100"></button>
+      <button (click)="language('WEBAPI')" class="btn btn-link"><img height='100' src="../assets/images/api.png" alt="">
+      </button>
+      <button (click)="language('ANGULAR')" class="btn btn-link"><img height='100' src="../assets/images/angular.png"
+          alt=""></button>
+
+    </div>
+    <div class="col-4">
+      <div *ngIf="flagCsharp || flagAngular || flagMvc">
+        <h2 *ngIf="flagCsharp"> C#</h2>
+        <h2 *ngIf="flagAngular"> Angular</h2>
+        <h2 *ngIf="flagMvc"> API</h2>
+        <h5> <small>Topic</small> {{currentQuestion.QUESTION}} - LEVEL {{currentQuestion.LEVEL}}</h5>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button class="btn btn-secondary" (click)="rating(1)">1</button>
+            <button class="btn btn-secondary" (click)="rating(2)">2</button>
+            <button class="btn btn-secondary" (click)="rating(3)">3</button>
+            <button class="btn btn-secondary" (click)="rating(4)">4</button>
+            <button class="btn btn-secondary" (click)="rating(5)">5</button>
+          </div>
+        </div>
+        <br />
+        <br />
+        <h3>Suggestions</h3>
+        <dl *ngFor="let item of currentQuestion.SUGGESTION">
+          <dt> Q: {{item.Q}}</dt>
+          <dd> A: {{item.A}}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="col-4">
+      <div *ngIf="results.length!==0">
+        <table class="table">
+          <tr>
+            <th>Topic</th>
+            <th>Question</th>
+            <th>Rating</th>
+          </tr>
+          <tr *ngFor="let val of results">
+            <td>{{val.Question}}</td>
+            <td>{{val.Topic}}</td>
+            <td>{{val.Rating}}</td>
+          </tr>
+        </table>
+        <button class="btn btn-secondary" (click)="complete()">Complete</button>
+        Total Score: {{ totalPercantage | percent:'2.0-2'}}
+      </div>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
 <router-outlet></router-outlet>
