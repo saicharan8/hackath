@@ -71,7 +71,7 @@
     <ul>
       <li>Status: <span *ngIf='totalPercantage >0.5'>Selected</span> <span *ngIf='totalPercantage<=0.5'>Rejected</span>
       </li>
-      <li>Designation <span *ngIf='totalPercantage >0.6 && totalPercantage <0.7'>Associate consultant</span> <span
+      <li>Designation <span *ngIf='totalPercantage >=0.6 && totalPercantage <0.7'>Associate consultant</span> <span
           *ngIf='totalPercantage >0.7 && totalPercantage <0.8'>consultant</span> <span
           *ngIf='totalPercantage >=0.8'>Senior consultant</span> </li>
       <li>Comments: NA</li>

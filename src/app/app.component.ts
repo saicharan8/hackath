@@ -9,7 +9,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
   title = 'HACKATHON';
   data: any = [];
-  url = "https://api.myjson.com/bins/huzbg";
+  url = "https://api.myjson.com/bins/11zo1w";
   flagCsharp: boolean = false;
   cSharpQue: any;
   flagMvc: boolean = false;
